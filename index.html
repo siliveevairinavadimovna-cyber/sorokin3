@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script async src="https://cdn.jsdelivr.net/npm/@iframe-resizer/child@5.5.9"></script>
+    <title>Финал урока — Плашка эксперта</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background-color: transparent;
+            padding: 10px 0;
+        }
+
+        .expert-typing-block-4 {
+            background: #ffffff;
+            border: 1px solid #e2e8f0;
+            border-radius: 12px;
+            padding: 28px;
+            display: flex;
+            align-items: flex-start;
+            gap: 24px;
+            width: 100%;
+            box-sizing: border-box;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03);
+        }
+
+        .expert-photo-wrap-4 {
+            width: 90px;
+            height: 90px;
+            border-radius: 50%;
+            overflow: hidden;
+            flex-shrink: 0;
+            background: #f1f5f9;
+            border: 2px solid #f39237; /* Оранжевый акцент */
+        }
+
+        .expert-photo-wrap-4 img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .expert-text-wrap-4 {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            font-size: 16px;
+            line-height: 1.5;
+            color: #1e293b;
+            font-weight: 400;
+            /* Высота с запасом под длинный текст, чтобы верстка не дергалась */
+            min-height: 220px; 
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .text-space-4 {
+            margin-bottom: 20px;
+        }
+
+        .typing-cursor-4 {
+            color: #f39237;
+            font-weight: 700;
+            animation: blink-4 0.7s infinite;
+            margin-left: 2px;
+        }
+
+        @keyframes blink-4 {
+            0% { opacity: 1; }
+            50% { opacity: 0; }
+            100% { opacity: 1; }
+        }
+
+        /* Стили кнопки скачивания */
+        .download-btn-wrapper-4 {
+            margin-top: auto;
+        }
+
+        .download-btn-4 {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            background-color: #001242; /* Темно-синий цвет */
+            color: #ffffff;
+            text-decoration: none;
+            padding: 12px 24px;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 15px;
+            transition: background-color 0.2s ease, transform 0.1s ease;
+            border: none;
+            cursor: pointer;
+            width: fit-content;
+        }
+
+        .download-btn-4:hover {
+            background-color: #001f66;
+        }
+
+        .download-btn-4:active {
+            transform: scale(0.98);
+        }
+
+        .download-icon-4 {
+            width: 18px;
+            height: 18px;
+            fill: currentColor;
+        }
+
+        /* Адаптив под мобильные устройства */
+        @media (max-width: 640px) {
+            .expert-typing-block-4 {
+                flex-direction: column;
+                align-items: center;
+                text-align: center;
+                gap: 16px;
+                padding: 20px;
+            }
+            
+            .expert-text-wrap-4 {
+                min-height: 380px; /* Больше высоты на узких экранах */
+                text-align: left;
+            }
+
+            .download-btn-4 {
+                display: flex;
+                justify-content: center;
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<div class="expert-typing-block-4">
+    <div class="expert-photo-wrap-4">
+        <img src="photo.jpg" alt="Эксперт">
+    </div>
+    <div class="expert-text-wrap-4">
+        <div class="text-space-4">
+            <span id="typing-field-4"></span><span class="typing-cursor-4">|</span>
+        </div>
+        
+        <div class="download-btn-wrapper-4">
+            <a href="https://seminar.pro-personal.ru/files/2026/deistviya_pri_atake_bpla.png" target="_blank" class="download-btn-4" download>
+                <svg class="download-icon-4" viewBox="0 0 24 24">
+                    <path d="M5 20h14v-2H5v2zM19 9h-4V3H9v6H5l7 7 7-7z"/>
+                </svg>
+                Скачать памятку
+            </a>
+        </div>
+    </div>
+</div>
+
+<script>
+    const textToType4 = "Итак, вы посмотрели ролик и научились распознавать сигнал «Ракетная опасность». Знаете, как действовать, если обнаружили дрон в воздухе. Зафиксировали состав экстренного сообщения для служб 112 и 102. Разобрали алгоритмы безопасной эвакуации для дома, улицы и автотранспорта. Запомните: действия, которые вы предпримете, будут отличаться в зависимости от того, где вы находитесь. Скачайте памятку ниже и используйте во время инструктажей по антитеррору, чтобы объяснить работникам, как действовать во время атаки БПЛА. Плакат поможет лучше усвоить алгоритм и не растеряться в случае реальной угрозы.";
+    
+    let charIndex4 = 0;
+    const typingSpeed4 = 15; // Чуть ускорил, так как текст объемный
+    const readPause4 = 9000; // 9 секунд на спокойное чтение финала
+    
+    const textField4 = document.getElementById('typing-field-4');
+
+    function startTyping4() {
+        if (charIndex4 < textToType4.length) {
+            textField4.textContent += textToType4.charAt(charIndex4);
+            charIndex4++;
+            setTimeout(startTyping4, typingSpeed4);
+        } else {
+            setTimeout(() => {
+                textField4.textContent = '';
+                charIndex4 = 0;
+                startTyping4();
+            }, readPause4);
+        }
+    }
+
+    document.addEventListener('DOMContentLoaded', startTyping4);
+</script>
+
+</body>
+</html>
